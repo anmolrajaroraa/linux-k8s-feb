@@ -1,0 +1,175 @@
+1969
+Dennis Ritchie and Ken Thompson developed C language and UNIX OS at AT&T Bell Labs
+Berkley, California
+1975 AT&T started selling UNIX commercially
+As a result of legal battle- two versions of UNIX came out - official AT&T Unix and free BSD Unix
+BSD - FreeBSD, OpenBSD, NetBSD, DragonFly Unix, PC-BSD
+
+1980s
+IBM created AIX, Sun - SunOS (Solaris), HP - HP-UX
+Richard Stallman - GNU Project (GNU is not Unix)
+
+1990s
+Linus Torvalds
+386 computer - POSIX standard
+New kernel - kernel + GNU tools
+
+2015
+95% of supercomputers
+Linux is almost everywhere
+Feb 2015 -> v3.19
+April 2015 -> 4.0
+
+
+Distributions of Linux -
+Red Hat - Red Hat Enterprise Linux , Fedora
+Ubuntu, Debian, others
+
+whoami
+hostname
+date
+su -    -> switching to root mode (type exit to switch to normal user)
+sudo passwd root -> To set or change your password
+ifdown enp0s3 -> To shutdown network adapter
+ifup enp0s3 -> To reboot network adapter
+ifconfig -> To check ip address
+apt-get update -> Bring in info about new versions of all the packages
+apt-get upgrade -> Install these new versions
+
+man ls
+man sysctl.conf
+man rsyslogd
+man -k sys
+whatis ls
+whereis -m ls -> man <path-to-man-page>
+man man
+
+
+
+1. Executable commands
+2. System calls - exit, fork, read, write, open, close, waitpid, create, link, unlink, execve, chdir
+3. Library calls - fopen, malloc
+4. Special files - 
+	-Block special files - dev/sda1
+	-Character special files - dev/stdin, stdout, stderr, random, urandom, null
+5. File formats and conventions - etc/passwd
+6. Games
+7. Misc. - groff -> language specific packages(Czech, german, french, swedish), input encodings(Latin, EBCDIC),
+special packages (60bit - provides macros for +-*/ of 60bit integers,papersize,pic,trace), naming packages, writing macros
+8. system admn cmnds
+9. kernel routines
+
+uptime -> check how many users are logged in
+w -> worload - who are those users, combination of several commands
+w -h
+who
+users
+ls
+cd
+cd ..
+sudo apt-get install yum
+ls -l
+ls -lh
+ls -lht
+chmod 754 bar.txt
+chmod 400 bar.txt
+chmod a+r bar.txt
+chmod g=rwx bar.txt
+chmod u-w bar.txt
+
+Permissions  No. of hardlinks 	User owner    Group owner    Size    Modification time  Name of the file/folder
+d---------         10            paul         root         4.0K       Jan31 12:00       Documents
+
+Modes - 1. Absolute(numeric) mode
+
+
+d    ---      ---     ---    (directory)
+
+-				(file)
+
+
+Permissions -> read(r), write(w), execute(x)
+
+
+000
+001
+010
+011
+100
+101
+110
+111
+
+
+0  ---   No permission
+1  --x  Execute
+2  -w-  Write
+3  -wx	Execute + write
+4  r--  read
+5  r-x  read + execute
+6  rw-  read + write
+7  rwx  read + write + execute
+
+
+
+rwx     r-x     r--   ->   754
+r--     ---    ---    ->   400
+
+
+2. Symbolic mode
+
++  ->  Add a permission
+-  -> Remove a permission
+= -> Set new permissons by overriding older one
+
+
+u -> user/owner
+g -> group
+o -> others
+a -> all
+
+
+
+o = rwx
+g + w
+u - x
+a - x
+
+
+
+
+Users can be found under - /etc/passwd
+Groups can be found under - /etc/group
+Passwords can be found under - /etc/shadow
+To see into .gz file -> tar -tf <>
+
+/ - rootfolder
+bin - (user binaries) common programs shared by the system, sysadmin and users
+boot - Startup files and kernel(vmlinuz). GRand Unified Boot loader (GRUB)
+dev - (device files) files having props related to hardware
+etc - (configuratuin files)imp sys conf files
+home - directories for users
+initrd - (on some distributions) info for booting - not delete it
+lib - library files needed by user programs and system
+lost + found -  every partition has this folder, contains files that were saved during failure4
+misc - for misc purposes
+mnt - (mount directory) point from where you can mount remote file systems
+media - removable external storages
+opt - (optionl add-on applications) third party add-on softwares
+proc - (process information) contain info about system resources
+root - admin user's home dir
+sbin - (system binaries) programs shared by the system and sysadmin
+tmp - (temporary files) temp files used by system, cleaned upon reboot
+usr - programs, libraries, docs for user-related programs
+var - (variable files)storing all variable files and temp files needed across reboots
+srv - (service data)
+
+
+
+
+
+
+
+
+Please take this survey :)
+https://goo.gl/forms/A6J2OVyOJtM4c7252
