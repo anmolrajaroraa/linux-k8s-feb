@@ -71,6 +71,13 @@ sudo apt-get install yum
 ls -l
 ls -lh
 ls -lht
+ls -lhr
+ls -R
+ls -lS
+ls -l <dir>
+alias ls="ls -lh"
+alias
+unalias ls
 chmod 754 bar.txt
 chmod 400 bar.txt
 chmod a+r bar.txt
@@ -137,6 +144,78 @@ a - x
 
 
 
+sort file.txt
+sort -r file.txt
+less <file-name>
+more <file-name>
+cat > file.txt -> open file in overwrite mode
+cat >> file.txt -> open file in append mode
+cat file.txt -> print contents of file
+cp -p fileA fileB
+cp -i fileA fileB
+mv -i fileA fileB
+cat fileA | more
+cat -n file.txt
+pwd
+pwd &
+ps
+ps -f
+ps <pid>
+apt-get purge yum > /dev/null 2>&1  &
+
+uid - user id
+pid - process id (unique 4/5 digit number)
+jobid - serial number ids
+ppid - parent process id
+c - cpu utilization time
+stime- start time of process
+tty - termnial associated with our process
+time - time taken by our process
+cmd - type of shell
+
+ps -a
+ps -x
+
+kill <pid>
+
+kill -9 <pid>
+
+bg <pid>
+
+fg <pid>
+
+top
+
+nice <value>
+
+-20 (highest priority) to 19 (lowest priority)
+
+renice <value> <pid>
+
+df -> show the amount of avail disk space
+
+free -> free and used physical and swap storage
+
+
+
+Type of processes -
+
+1. Parent and child processes
+2.  Zombie and orphan processes
+3. Daemon processes
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Users can be found under - /etc/passwd
 Groups can be found under - /etc/group
@@ -164,6 +243,37 @@ usr - programs, libraries, docs for user-related programs
 var - (variable files)storing all variable files and temp files needed across reboots
 srv - (service data)
 
+
+
+Cron
+
+* * * * *
+
+0 5 * * 1 -> 5 am every monday
+
+15 12 1 * * -> 12:15 on 1st of every month
+
+0 0,12 * * * -> 12 am and 12 pm every day
+0 0,12 * * Mon-Fri -> Only on M,T,W,T,F
+0/15 * * * *
+0/15 12 * * Mon-Fri
+
+
+
+
+
+1. Minute (0-59)
+2. Hour (0-23)
+3. Day of month (1-31)
+4. Month (1-12) (Jan-Dec)
+5. Day of week (0-6) (Sun-Sat)
+6. Command
+
+
+* -> all the values should be used
+- -> used for range
+/ -> used for giving intervals
+, -> separating items
 
 
 
