@@ -207,16 +207,6 @@ Type of processes -
 
 
 
-
-
-
-
-
-
-
-
-
-
 Users can be found under - /etc/passwd
 Groups can be found under - /etc/group
 Passwords can be found under - /etc/shadow
@@ -274,6 +264,141 @@ Cron
 - -> used for range
 / -> used for giving intervals
 , -> separating items
+
+
+Filter table ( default table ) - managing traffic and connections
+- INPUT -> packages destined for local socktes
+-FORWARD -> routing the packets through the system
+- OUTPUT -> packets generated locally
+
+NAT table - it is used when a packet tries to create a new connection (changing the flow of packets)
+- PREROUTING -> used for altering a packet as soon as it is received
+- OUTPUT -> used for altering locally generated packets
+- POSTROUTING -> used for altering packets as they are about to go
+
+MANGLE table - it is used for altering packtes (packet alteration)
+- PREROUTING -> used for altering a packet as soon as it is received
+- OUTPUT -> used for altering locally generated packets
+- POSTROUTING -> used for altering packets as they are about to go
+- INPUT ->for incoming packets 
+- FORWARD -> for packets routed through the system
+
+iptables -L -n -v
+
+iptables -t nat -L -n -v
+
+iptables -A INPUT -s 192.168.19.250 -j DROP
+
+iptables -A INPUT -p tcp -s 192.168.19.250 -j DROP
+
+iptables -D INPUT -s 192.168.19.250 -j DROP
+
+iptables -A OUTPUT -p tcp --dport 22 -j DROP
+
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+
+iptables -A INPUT -p tcp -m multiport --dport 22,80,8080,443 -j ACCEPT
+
+iptables -A OUTPUT -p tcp -d 192.168.19.0/24 --dport 22 -j ACCEPT
+
+iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 25 -j REDIRECT --to-port 8000
+
+
+
+
+apt-cache search <package-name> <package-name>
+
+
+
+ESXi -> Elastic Sky X integrated
+
+Direct console user interface ( DCUI)
+
+VCenter -> orchestrator for ESXi hypervisors
+
+Vsphere client
+
+Kubernetes - manage, deploy, monitor containers
+self-service Platform-as-a-Service
+
+Docker - creates containers
+
+containers - smallest unit of k8s world
+
+container orchestration -
+1. provisioning and deployment of containers
+2. scaling of containers
+3. Movement of containers from one node to another node
+4. Allocation of resources to containers
+5. Exposing the services
+6. Load balancing of service discovery
+7. Health monitoring of containers
+8. Configuration of application or micro-services
+
+nodes - host on which pod runs
+
+pods -  management unit in k8s. Each pod has its unique own ip address and storage & network resources. Containers share these networking and storage resources. They are mortal. YAML format for PodSpecs.
+
+
+deployments - used for having HA in k8s. Pod is mortal but keeps check of the desired no of pods and assures that specified no of containers are up and running. Deployment also specifies how many instances of pods should run. YAML format is used.
+
+services - it is an abstraction of a logical set of pods and a policy by which we can access them.
+Sometimes they are known as micro-services.
+ClusterIP - internal to k8s cluster
+NodePort - publish endpoint for external users
+
+container image - Docker Hub is a registry 
+
+kubectl apply - this command is declarative
+
+sudo snap install kubectl --classic
+
+sudo apt-get install python-pip
+
+sudo pip install awscli
+
+Install kops from official git of kops
+
+Replication Controller -> Scaling
+
+Horizontal scaling -> Stateless applications
+
+Vertical scaling -> Stateful applications
+
+KOPS commands :-
+1. Create IAM user with Admin access
+
+2. aws configure
+
+3. aws s3api create-bucket --bucket mynewcluster-state-store --region=ap-south-1 --create-bucket-configuration LocationConstraint=ap-south-1
+
+4. export KOPS_STATE_STORE=s3://mynewcluster-state-store
+   export KOPS_CLUSTER_NAME=mycluster.kops.local
+
+Optional -> ssh-keygen (only if you dont have any ssh-keys already)
+
+5. kops create cluster --node-count=2 --node-size=t2.micro --master-size=t2.micro --zones=ap-south-1a --name=${KOPS_CLUSTER_NAME}
+ 
+6. kops update cluster --name ${KOPS_CLUSTER_NAME} --yes
+
+7. kops validate cluster
+
+
+Deployment commands :
+kubectl create -f helloworld.yml
+kubectl expose deployment helloworld-deployment --type=NodePort
+kubectl describe service helloworld-deployment
+kubectl get pods -o json
+kubectl get pods -o jsonpath={.items[*].spec.containers[*].name}
+kubectl set image deployment helloworld-deployment k8s-demo=anmolrajarora/k8s-images:v0.0.2
+kubectl rollout status deployment/helloworld-deployment
+kubectl rollout undo deployment/helloworld-deployment
+kubectl rollout history deployment/helloworld-deployment
+kubectl rollout undo deployment/helloworld-deployment --to-revision=3
+kubectl set image deployment helloworld-deployment k8s-demo=anmolrajarora/k8s-images:v0.0.2 --record=true
+kubectl edit deployment/helloworld-deployment
+
+
 
 
 
